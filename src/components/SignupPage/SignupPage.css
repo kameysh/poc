@@ -1,0 +1,48 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+.wrap {
+  max-width: 1100px;
+  margin: auto;
+  height: 100vh;
+  text-align: center;
+  padding: 100px;
+}
+
+
+.form-group-field {
+    width: 300px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.form-group-field input{
+    width: 100%;
+    padding: 4px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.err-msg{
+    color: blue;
+}
+.btn-flex {
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.btn-signup{
+    margin-top: 15px;
+    width: 30%;
+}
+
+.btn-log {
+    margin-top: 15px;
+    width: 170%;
+}
+
