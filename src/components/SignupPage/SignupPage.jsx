@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import validation from "../../validation";
+import { Navbar } from 'react-bootstrap';
 import pandora from "@faizaanceg/pandora";
-import "./SignupPage.css";
+import { Button, TextField, Container } from '@material-ui/core';
+//import "./SignupPage.css";
 
 
 function SignupPage() {
@@ -16,6 +18,9 @@ function SignupPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const styleError = {
+        color: 'blue'
+    }
 
     function HandleChange(e) {
         const { name, value } = e.target;
@@ -48,73 +53,81 @@ function SignupPage() {
 
     return (
         <div>
-            { submitted ? <Redirect to='/login' /> : <div className='wrap'>
+            { submitted ? <Redirect to='/login' /> : <div className='container'>
                 <h2>This is signup page</h2>
+                <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+                    <Link to='/'><Navbar.Brand>Home</Navbar.Brand></Link>
+                </Navbar>
                 <br></br>
                 <br></br>
                 <div>
-                    <form onSubmit={HandleSubmit} noValidate>
-                        <div className='form-group'>
-                            <label>Username</label>{' '}
-                            <div className='form-group-field'>
-                                <input type='text'
-                                    name='username'
-                                    placeholder='username'
-                                    value={values.username}
-                                    onChange={HandleChange}
-                                />
-                                <br></br>
-                                <div className='err-msg'> {errors.username && <p>{errors.username}</p>} </div>
+                    <Container style={{textAlign: 'center'}}>
+                        <form onSubmit={HandleSubmit} noValidate>
+                            <div className='form-group'>
+                                <label>Enter Username</label>{' '}
+                                <div className='form-group-field'>
+                                    <TextField type='text'
+                                        required id="standard-required"
+                                        name='username'
+                                        label='username'
+                                        value={values.username}
+                                        onChange={HandleChange}
+                                    />
+                                    <br></br>
+                                    <div style={styleError}> {errors.username && <p>{errors.username}</p>} </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className='form-group'>
-                            <label>Email</label>{' '}
-                            <div className='form-group-field'>
-                                <input type='email'
-                                    name='email'
-                                    placeholder='email'
-                                    value={values.email}
-                                    onChange={HandleChange}
-                                />
-                                <br></br>
-                                <div className='err-msg'>{errors.email && <p>{errors.email}</p>}</div>
+                            <div className='form-group'>
+                                <label>Enter Email</label>{' '}
+                                <div className='form-group-field'>
+                                    <TextField type='email'
+                                        required id="standard-required"
+                                        name='email'
+                                        label='email'
+                                        value={values.email}
+                                        onChange={HandleChange}
+                                    />
+                                    <br></br>
+                                    <div style={styleError}>{errors.email && <p>{errors.email}</p>}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div className='form-group'>
-                            <label>Password</label>{' '}
-                            <div className='form-group-field'>
-                                <input type='password'
-                                    name='password1'
-                                    placeholder='password'
-                                    value={values.password1}
-                                    onChange={HandleChange}
-                                />
-                                <br></br>
-                                <div className='err-msg'>{errors.password1 && <p>{errors.password1}</p>}</div>
+                            <div className='form-group'>
+                                <label>Enter Password</label>{' '}
+                                <div className='form-group-field'>
+                                    <TextField type='password'
+                                        required id="standard-required"
+                                        name='password1'
+                                        label='password'
+                                        value={values.password1}
+                                        onChange={HandleChange}
+                                    />
+                                    <br></br>
+                                    <div style={styleError}>{errors.password1 && <p>{errors.password1}</p>}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div className='form-group'>
-                            <label>Confirm Password</label>
-                            <div className='form-group-field'>
-                                <input type='password'
-                                    name='password2'
-                                    placeholder='re-enter password'
-                                    value={values.password2}
-                                    onChange={HandleChange}
-                                />
-                                <br></br>
-                                <div className='err-msg'>{errors.password2 && <p>{errors.password2}</p>}</div>
+                            <div className='form-group'>
+                                <label>Re-enter Password</label>
+                                <div className='form-group-field'>
+                                    <TextField type='password'
+                                        required id="standard-required"
+                                        name='password2'
+                                        label='confirm password'
+                                        value={values.password2}
+                                        onChange={HandleChange}
+                                    />
+                                    <br></br>
+                                    <div style={styleError}>{errors.password2 && <p>{errors.password2}</p>}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div className='btn-flex'>
-                            <div className='btn btn-signup'><button type='submit'>Signup</button></div>
-                            <Link to='/login'>
-                                <div className='btn btn-log'><button>Switch to login</button></div>
-                            </Link>
-                        </div>
-                    </form>
+                            <div className='btn-flex'>
+                                <div className='btn btn-signup'><Button variant="contained" color="primary" type='submit'>Signup</Button></div>
+                                <Link style={{ textDecoration: 'none' }} to='/login'>
+                                    <div className='btn btn-log'><Button variant="contained" color="secondary" >Switch to login</Button></div>
+                                </Link>
+                            </div>
+                        </form>
+                    </Container>
                 </div>
-
             </div>}
         </div>
     )

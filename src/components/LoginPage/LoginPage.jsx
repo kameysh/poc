@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import validation from "../../validation";
 import pandora from "@faizaanceg/pandora";
-import "./LoginPage.css";
+import MenuComp from "../MenuComp/MenuComp";
+import { Button, TextField, Container } from '@material-ui/core';
+//import "./LoginPage.css";
 
 function LoginPage() {
 
@@ -19,6 +21,9 @@ function LoginPage() {
             ...values,
             [name]: value
         })
+    }
+    const styleError = {
+        color: 'blue'
     }
 
     function HandleSubmit(e) {
@@ -48,45 +53,48 @@ function LoginPage() {
     }, [errors]);
 
     return submitted ? <Redirect to='/profile' /> : (
-        <div className='wrap'>
+        <div className='container'>
             <h2>Login Page</h2>
+            <MenuComp />
             <br></br>
             <br></br>
             <div>
-                <form onSubmit={HandleSubmit} noValidate>
-                    <div className='form-group'>
-                        <label>Email</label>
-                        <div className='form-group-field'>
-                            <input type='email'
-                                name='email'
-                                placeholder='email'
-                                value={values.email}
-                                onChange={HandleChange}
-                            />
-                            <br></br>
-                            <div className='err-msg'> {errors.email && <p>{errors.email}</p>} </div>
+                <Container style={{textAlign: 'center'}}>
+                    <form onSubmit={HandleSubmit} noValidate>
+                        <div className='form-group'>
+                            <label>Email</label>
+                            <div className='form-group-field'>
+                                <TextField type='email'
+                                    name='email'
+                                    label='email'
+                                    value={values.email}
+                                    onChange={HandleChange}
+                                />
+                                <br></br>
+                                <div style={styleError}> {errors.email && <p>{errors.email}</p>} </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className='form-group'>
-                        <label>Password</label>
-                        <div className='form-group-field'>
-                            <input type='password'
-                                name='password1'
-                                placeholder='password'
-                                value={values.password}
-                                onChange={HandleChange}
-                            />
-                            <br></br>
-                            <div className='err-msg'> {errors.password1 && <p>{errors.password1}</p>} </div>
+                        <div className='form-group'>
+                            <label>Password</label>
+                            <div className='form-group-field'>
+                                <TextField type='password'
+                                    name='password1'
+                                    label='password'
+                                    value={values.password}
+                                    onChange={HandleChange}
+                                />
+                                <br></br>
+                                <div style={styleError}> {errors.password1 && <p>{errors.password1}</p>} </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className='buttons'>
-                        <button type='submit'>Login</button>
-                        <Link to='/signup'>
-                            <button>Switch to signup</button>
-                        </Link>
-                    </div>
-                </form>
+                        <div className='buttons'>
+                            <div className='btn btn-log'><Button variant="text" variant="contained" color="secondary" type='submit'>Login</Button></div>
+                            <Link style={{ textDecoration: 'none' }} to='/signup'>
+                                <div className='btn btn-signup'><Button variant="text" variant="contained" color="primary">Switch to signup</Button></div>
+                            </Link>
+                        </div>
+                    </form>
+                </Container>
             </div>
 
         </div>

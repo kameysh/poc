@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import pandora from "@faizaanceg/pandora";
 import validation from "../../validation";
+import { Button, TextField, Card } from '@material-ui/core';
 
 export default function FormComponent(props) {
     const [errors, setErrors] = useState({});
     const [saved, setSaved] = useState();
-
+    const styleError = {
+        color: 'blue'
+    }
     function handleSubmit(e) {
         const values = {};
         values.email = e.target.email.value;
@@ -29,23 +32,22 @@ export default function FormComponent(props) {
     return (
         <div>
             <form onSubmit={handleSubmit} noValidate>
-                <div className='fle'>
-                </div>
-                <br></br>
-                <div className='card'>
+                <Card style={{ textAlign: 'center', backgroundColor:'#e0e0e0'}}>
                     <div className='flexx'>
-                        <span>Email:</span><br />
-                        <input readOnly={!props.isEditable} type='email' defaultValue={props.userList.email} name='email'></input>
-                        <div className='err-msg'> {errors.email && <p>{errors.email}</p>} </div>
-                        <span>Username: </span>
-                        <input readOnly={!props.isEditable} type='text' defaultValue={props.userList.username} name='username'></input>
-                        <div className='err-msg'> {errors.username && <p>{errors.username}</p>} </div>
+                        <strong><span>Email</span></strong><br />
+                        <TextField readOnly={!props.isEditable} type='email' defaultValue={props.userList.email} name='email'></TextField>
+                        <br /><br />
+                        <div style={styleError}> {errors.email && <p>{errors.email}</p>} </div>
+                        <strong><span>Username</span></strong><br />
+                        <TextField readOnly={!props.isEditable} type='text' defaultValue={props.userList.username} name='username'></TextField>
+                        <div style={styleError}> {errors.username && <p>{errors.username}</p>} </div>
+                        <br />
                         {props.isEditable ? <div className='btn-flex'>
-                            <button type='submit'>Save</button>
-                            {saved ? <p>{saved}</p> : null}
+                            <div><Button style={{marginBottom: '15px'}} color='primary' variant='contained' type='submit'>Save</Button></div>
+                           <div style={{color: 'green'}}>{saved ? <p>{saved}</p> : null}</div>
                         </div> : null}
                     </div>
-                </div>
+                </Card>
             </form>
         </div>
     )
