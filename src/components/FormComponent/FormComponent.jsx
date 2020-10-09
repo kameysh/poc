@@ -35,11 +35,11 @@ export default function FormComponent(props) {
                 <Card style={{ textAlign: 'center', backgroundColor:'#e0e0e0'}}>
                     <div className='flexx'>
                         <strong><span>Email</span></strong><br />
-                        <TextField readOnly={!props.isEditable} type='email' defaultValue={props.userList.email} name='email'></TextField>
+                        <TextField disabled={!props.isEditable} type='email' defaultValue={props.userList.email} name='email'></TextField>
                         <br /><br />
                         <div style={styleError}> {errors.email && <p>{errors.email}</p>} </div>
                         <strong><span>Username</span></strong><br />
-                        <TextField readOnly={!props.isEditable} type='text' defaultValue={props.userList.username} name='username'></TextField>
+                        <TextField disabled={!props.isEditable} type='text' defaultValue={props.userList.username} name='username'></TextField>
                         <div style={styleError}> {errors.username && <p>{errors.username}</p>} </div>
                         <br />
                         {props.isEditable ? <div className='btn-flex'>
