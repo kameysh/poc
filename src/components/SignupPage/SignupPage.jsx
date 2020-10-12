@@ -121,9 +121,9 @@ function SignupPage() {
                             </div>
                             <div className='btn-flex'>
                                 <div className='btn btn-signup'><Button variant="contained" color="primary" type='submit'>Signup</Button></div>
-                                <Link style={{ textDecoration: 'none' }} to='/login'>
+                                {/* <Link style={{ textDecoration: 'none' }} to='/login'>
                                     <div className='btn btn-log'><Button variant="contained" color="secondary" >Switch to login</Button></div>
-                                </Link>
+                                </Link> */}
                             </div>
                         </form>
                     </Container>
